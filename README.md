@@ -45,11 +45,11 @@ This project is a UPI-style money transfer simulation built with NestJS and Mong
 
 📜 API Endpoints
 Method	Path	Description
-POST	/users	Register user & auto-provision wallet
-GET	/users	List all users
-POST	/wallet	Manually create a wallet
-GET	/wallet/:phone	Get wallet by phone number
-POST	/transfer	Transfer funds between wallets
+1.POST	/users	Register user & auto-provision wallet
+2.GET	/users	List all users
+3.POST	/wallet	Manually create a wallet
+4.GET	/wallet/:phone	Get wallet by phone number
+5.POST	/transfer	Transfer funds between wallets
 
 🎓 Usage Example
 1. Register Alice POST /users
