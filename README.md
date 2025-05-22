@@ -40,7 +40,8 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 Create a `.env` file at the root of your project:
 
 env
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://admin:admin_2025@mydb.qjllmxu.mongodb.net/avinash
+
 
 
 ## Installation & Setup
@@ -51,23 +52,24 @@ MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?ret
     * Create a .env file with: MONGO_URI=mongodb+srv://admin:<db_password>@mydb.qjllmxu.mongodb.net/
 5. Start the app npm run start:dev
 6. Browse API docs Open swagger : http://localhost:3001/api#/
+7. Connecting with MongoDB Compass - mongodb+srv://admin:admin_123@mydb.qjllmxu.mongodb.net/
   
 
 ## API Endpoints
 **Method	Path	Description**
-1.POST	/users	Register user & auto-provision wallet
-2.GET	/users	List all users
-3.POST	/wallet	Manually create a wallet
-4.GET	/wallet/:phone	Get wallet by phone number
-5.POST	/transfer	Transfer funds between wallets
+1. POST	/users	Register user & auto-provision wallet
+2. GET	/users	List all users
+3. POST	/wallet	Manually create a wallet
+4. GET	/wallet/:phone	Get wallet by phone number.
+5. POST	/transfer	Transfer funds between wallets
 
 ## Usage Example
 1. Register Alice POST /users
- { "name": "Alice", "phone": "1111111111", "initialBalance": 500 }
+   { "name": "Alice", "phone": "1111111111", "initialBalance": 500 }
 2. Register Bob POST /users
    { "name": "Bob", "phone": "2222222222", "initialBalance": 300 }
 3. Transfer ₹100 POST /transfer
-  { "senderPhone": "1111111111", "receiverPhone": "2222222222", "amount": 100 }
+   { "senderPhone": "1111111111", "receiverPhone": "2222222222", "amount": 100 }
 4. Verify Balances
-GET /wallet/1111111111  # expects balance: 400
-GET /wallet/2222222222  # expects balance: 400
+   GET /wallet/1111111111  # expects balance: 400
+   GET /wallet/2222222222  # expects balance: 400
