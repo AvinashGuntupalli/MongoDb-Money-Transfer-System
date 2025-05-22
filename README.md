@@ -53,9 +53,11 @@ POST	/transfer	Transfer funds between wallets
 
 🎓 Usage Example
 1. Register Alice POST /users
-2. { "name": "Alice", "phone": "1111111111", "initialBalance": 500 }
-3. Register Bob POST /users
-4. { "name": "Bob", "phone": "2222222222", "initialBalance": 300 }
-5. Transfer ₹100 POST /transfer
-6. { "senderPhone": "1111111111", "receiverPhone": "2222222222", "amount": 100 }
-7. Verify Balances
+ { "name": "Alice", "phone": "1111111111", "initialBalance": 500 }
+2. Register Bob POST /users
+   { "name": "Bob", "phone": "2222222222", "initialBalance": 300 }
+3. Transfer ₹100 POST /transfer
+  { "senderPhone": "1111111111", "receiverPhone": "2222222222", "amount": 100 }
+4. Verify Balances
+GET /wallet/1111111111  # expects balance: 400
+GET /wallet/2222222222  # expects balance: 400
