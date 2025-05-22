@@ -44,6 +44,7 @@ This project is a UPI-style money transfer simulation built with NestJS and Mong
   
 
 📜 API Endpoints
+
 Method	Path	Description
 1.POST	/users	Register user & auto-provision wallet
 2.GET	/users	List all users
