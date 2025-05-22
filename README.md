@@ -1,26 +1,60 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+Money Transfer Simulation
+A NestJS microservice that allows peer-to-peer money transfers using MongoDB Atlas, with full user registration, wallet management, transactional transfers, and Swagger-powered API docs.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Features Implemented in MAIN Branch
+Global NestJS CLI setup & modular architecture
+Clean, feature-driven modules (UserModule, WalletModule, TransferModule)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+User Registration & Wallet Provisioning
+
+POST /users — accepts name, phone, and initialBalance
+
+Automatically creates a Wallet linked to the new user
+
+Wallet Management APIs
+
+POST /wallet — manual wallet creation (if needed)
+
+GET /wallet/:phone — fetch wallet balance by phone number
+
+Atomic Fund Transfers
+
+POST /transfer — transfers funds from one phone to another
+
+Validates distinct accounts, sufficient balance, and logs each transaction
+
+Transactional ACID Guarantees
+
+Uses MongoDB sessions to ensure atomicity, consistency, and isolation on each transfer
+
+MongoDB Atlas Integration (Mongoose)
+
+MongooseModule.forRootAsync using @nestjs/config
+
+Schemas for User, Wallet, and Transaction with robust validation
+
+Input Validation & Swagger Documentation
+
+DTOs with class-validator and @nestjs/swagger decorators
+
+Interactive API docs at /api
+
+Environment-Based Configuration
+
+ConfigModule loads MONGO_URI from .env
+
+Tech Stack & Tools
+Framework: NestJS (TypeScript)
+
+Database: MongoDB Atlas via Mongoose (transactions, ACID)
+
+API Docs: Swagger (@nestjs/swagger)
+
+Validation: class-validator, DTOs, global ValidationPipe
+
+Config: @nestjs/config + .env
+
+Testing & Dev: Nodemon/Nest CLI, Postman or curl
 
 ## Description
 
