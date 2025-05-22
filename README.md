@@ -1,83 +1,61 @@
-Money Transfer Simulation
- A NestJS microservice that allows peer-to-peer money transfers using MongoDB Atlas, with full user registration, wallet management, transactional transfers, and Swagger-powered API docs.
+ Money Transfer Simulation
 
-Features Implemented in MAIN Branch
-* Global NestJS CLI setup & modular architecture Clean, feature-driven modules (UserModule, WalletModule, TransferModule)
+This project is a UPI-style money transfer simulation built with NestJS and MongoDB (Atlas + Compass). It allows users to register with a custom initial wallet balance and perform peer-to-peer fund transfers via phone numbers.
+
+🔧 Features Implemented in MAIN Branch
+* Modular NestJS Architecture
+    * Organized into UserModule, WalletModule, and TransferModule for clear separation of concerns
 * User Registration & Wallet Provisioning
-    * POST /users — accepts name, phone, and initialBalance
-    * Automatically creates a Wallet linked to the new user
+    * POST /users — register users by providing name, phone, and initialBalance
+    * Automatically provisions a wallet linked to the new user
 * Wallet Management APIs
-    * POST /wallet — manual wallet creation (if needed)
-    * GET /wallet/:phone — fetch wallet balance by phone number
+    * POST /wallet — manual wallet creation if needed
+    * GET /wallet/:phone — query wallet balance by phone number
 * Atomic Fund Transfers
-    * POST /transfer — transfers funds from one phone to another
-    * Validates distinct accounts, sufficient balance, and logs each transaction
+    * POST /transfer — execute peer-to-peer transfers
+    * Validates distinct sender/receiver, sufficient balance; logs each transaction
 * Transactional ACID Guarantees
-    * Uses MongoDB sessions to ensure atomicity, consistency, and isolation on each transfer
-* MongoDB Atlas Integration (Mongoose)
-    * MongooseModule.forRootAsync using @nestjs/config
-    * Schemas for User, Wallet, and Transaction with robust validation
-* Input Validation & Swagger Documentation
-    * DTOs with class-validator and @nestjs/swagger decorators
-    * Interactive API docs at /api
+    * Leverages MongoDB sessions to ensure atomicity, consistency, and isolation of transfer operations
+* MongoDB Atlas & Compass Integration (Mongoose)
+    * MongooseModule.forRootAsync with @nestjs/config for dynamic connection
+    * Schemas for User, Wallet, and Transaction with server-side validation
+    * MongoDB Compass for GUI-based inspection and real-time data analysis
+* Input Validation & API Documentation
+    * DTOs using class-validator and @nestjs/swagger decorators
+    * Interactive Swagger UI available at /api
 * Environment-Based Configuration
     * ConfigModule loads MONGO_URI from .env
 
-Tech Stack & Tools
+🏗️ Tech Stack & Tools
 * Framework: NestJS (TypeScript)
-* Database: MongoDB Atlas via Mongoose (transactions, ACID)
+* Database: MongoDB Atlas + Compass via Mongoose ODM
 * API Docs: Swagger (@nestjs/swagger)
-* Validation: class-validator, DTOs, global ValidationPipe
+* Validation: class-validator, global ValidationPipe
 * Config: @nestjs/config + .env
-* Testing & Dev: Nodemon/Nest CLI, Postman or curl
 
+🚀 Installation & Setup
+1. Clone the repo git clone <repo-url>
+2. cd upi-simulator
+3. Install dependencies npm install
+4. Configure environment
+    * Create a .env file with: MONGO_URI=mongodb+srv://admin:<db_password>@mydb.qjllmxu.mongodb.net/
+5. Start the app npm run start:dev
+6. Browse API docs Open swagger : http://localhost:3001/api#/
+  
 
-## Description
+📜 API Endpoints
+Method	Path	Description
+POST	/users	Register user & auto-provision wallet
+GET	/users	List all users
+POST	/wallet	Manually create a wallet
+GET	/wallet/:phone	Get wallet by phone number
+POST	/transfer	Transfer funds between wallets
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+🎓 Usage Example
+1. Register Alice POST /users
+2. { "name": "Alice", "phone": "1111111111", "initialBalance": 500 }
+3. Register Bob POST /users
+4. { "name": "Bob", "phone": "2222222222", "initialBalance": 300 }
+5. Transfer ₹100 POST /transfer
+6. { "senderPhone": "1111111111", "receiverPhone": "2222222222", "amount": 100 }
+7. Verify Balances
