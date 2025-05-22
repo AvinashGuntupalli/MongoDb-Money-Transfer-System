@@ -1,60 +1,36 @@
 Money Transfer Simulation
-A NestJS microservice that allows peer-to-peer money transfers using MongoDB Atlas, with full user registration, wallet management, transactional transfers, and Swagger-powered API docs.
+ A NestJS microservice that allows peer-to-peer money transfers using MongoDB Atlas, with full user registration, wallet management, transactional transfers, and Swagger-powered API docs.
 
 Features Implemented in MAIN Branch
-Global NestJS CLI setup & modular architecture
-Clean, feature-driven modules (UserModule, WalletModule, TransferModule)
-
-User Registration & Wallet Provisioning
-
-POST /users — accepts name, phone, and initialBalance
-
-Automatically creates a Wallet linked to the new user
-
-Wallet Management APIs
-
-POST /wallet — manual wallet creation (if needed)
-
-GET /wallet/:phone — fetch wallet balance by phone number
-
-Atomic Fund Transfers
-
-POST /transfer — transfers funds from one phone to another
-
-Validates distinct accounts, sufficient balance, and logs each transaction
-
-Transactional ACID Guarantees
-
-Uses MongoDB sessions to ensure atomicity, consistency, and isolation on each transfer
-
-MongoDB Atlas Integration (Mongoose)
-
-MongooseModule.forRootAsync using @nestjs/config
-
-Schemas for User, Wallet, and Transaction with robust validation
-
-Input Validation & Swagger Documentation
-
-DTOs with class-validator and @nestjs/swagger decorators
-
-Interactive API docs at /api
-
-Environment-Based Configuration
-
-ConfigModule loads MONGO_URI from .env
+* Global NestJS CLI setup & modular architecture Clean, feature-driven modules (UserModule, WalletModule, TransferModule)
+* User Registration & Wallet Provisioning
+    * POST /users — accepts name, phone, and initialBalance
+    * Automatically creates a Wallet linked to the new user
+* Wallet Management APIs
+    * POST /wallet — manual wallet creation (if needed)
+    * GET /wallet/:phone — fetch wallet balance by phone number
+* Atomic Fund Transfers
+    * POST /transfer — transfers funds from one phone to another
+    * Validates distinct accounts, sufficient balance, and logs each transaction
+* Transactional ACID Guarantees
+    * Uses MongoDB sessions to ensure atomicity, consistency, and isolation on each transfer
+* MongoDB Atlas Integration (Mongoose)
+    * MongooseModule.forRootAsync using @nestjs/config
+    * Schemas for User, Wallet, and Transaction with robust validation
+* Input Validation & Swagger Documentation
+    * DTOs with class-validator and @nestjs/swagger decorators
+    * Interactive API docs at /api
+* Environment-Based Configuration
+    * ConfigModule loads MONGO_URI from .env
 
 Tech Stack & Tools
-Framework: NestJS (TypeScript)
+* Framework: NestJS (TypeScript)
+* Database: MongoDB Atlas via Mongoose (transactions, ACID)
+* API Docs: Swagger (@nestjs/swagger)
+* Validation: class-validator, DTOs, global ValidationPipe
+* Config: @nestjs/config + .env
+* Testing & Dev: Nodemon/Nest CLI, Postman or curl
 
-Database: MongoDB Atlas via Mongoose (transactions, ACID)
-
-API Docs: Swagger (@nestjs/swagger)
-
-Validation: class-validator, DTOs, global ValidationPipe
-
-Config: @nestjs/config + .env
-
-Testing & Dev: Nodemon/Nest CLI, Postman or curl
 
 ## Description
 
