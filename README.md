@@ -8,6 +8,7 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 - ✅ User module with user creation, retrieval by phone
 - ✅ Wallet module with automatic wallet creation per user
 - ✅ Money transfer logic (debit/credit) with validations
+- ✅ Transaction history logging for every transfer
 - ✅ MongoDB integration via Mongoose
 - ✅ Swagger documentation (`/api`)
 - ✅ Input validation using `class-validator`
@@ -25,6 +26,9 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 - **Transfer Module**
   - Transfers money between wallets
   - Ensures atomicity of sender debit and receiver credit
+- **Transaction Module**
+  -Stores transaction records with sender, receiver, amount, and timestamp
+  -Enables audit and history tracking of transfers
 
 ##  Technologies Used
 
@@ -61,7 +65,8 @@ MONGO_URI=mongodb+srv://admin:admin_2025@mydb.qjllmxu.mongodb.net/avinash
 2. GET	/users	List all users
 3. POST	/wallet	Manually create a wallet
 4. GET	/wallet/:phone	Get wallet by phone number.
-5. POST	/transfer	Transfer funds between wallets
+5. POST | /transfer | Transfer funds between wallets and store transaction history
+6. GET /transaction  Get transaction history
 
 ## Usage Example
 1. Register Alice POST /users
