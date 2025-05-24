@@ -32,7 +32,7 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 - **Transaction Module**
   -Stores transaction records with sender, receiver, amount, and timestamp
   -Enables audit and history tracking of transfers
-- **Aggregations API**
+- **Aggregations API for **
 - Total amount sent and received by user
 - Daily transaction summary
 - Date-specific transactions
