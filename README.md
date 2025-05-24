@@ -14,6 +14,9 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 - ✅ Input validation using `class-validator`
 - ✅ Environment-based config management via `.env`
 - ✅ MongoDB Compass used for DB inspection
+- ✅ Transaction Aggregation Endpoints for summaries, history, and insights
+- ✅ Paginated Transaction History API
+- ✅ Date-formatted API responses for readability
 
 ##  Modules
 
@@ -29,6 +32,12 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 - **Transaction Module**
   -Stores transaction records with sender, receiver, amount, and timestamp
   -Enables audit and history tracking of transfers
+- **Aggregation APIs **
+   -Total amount sent and received by user
+   -Daily transaction summary
+   -Date-specific transactions
+   -Full transaction history with pagination
+   -Enables reporting, auditing, and analytics features
 
 ##  Technologies Used
 
@@ -67,6 +76,12 @@ MONGO_URI=mongodb+srv://admin:admin_2025@mydb.qjllmxu.mongodb.net/avinash
 4. GET	/wallet/:phone	Get wallet by phone number.
 5. POST | /transfer | Transfer funds between wallets and store transaction history
 6. GET /transaction  Get transaction history
+7. GET/transactions/summary/{phone} Get total amount sent and received by a phone number
+8. GET/transactions/top-senders Get top 5 users who sent the most money
+9. GET/transactions/top-receivers Get top N receivers by amount received
+10. GET/transactions/daily-summary Get daily transaction summary (total & count)
+11. GET/transactions/by-date/{date} Get all transactions on a specific date
+12. GET/transactions/history/{phone} Get unified transaction history by phone number
 
 ## Usage Example
 1. Register Alice POST /users
