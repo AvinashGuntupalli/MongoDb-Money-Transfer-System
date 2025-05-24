@@ -10,13 +10,11 @@ export class WalletService {
     @InjectModel(Wallet.name) private walletModel: Model<WalletDocument>,
   ) {}
 
-  //   async createWallet(userId: string, phone: string): Promise<Wallet> {
-  //     const wallet = new this.walletModel({ userId, phone });
-  //     return wallet.save();
-  //   }
   async createWallet(dto: CreateWalletDto): Promise<Wallet> {
     const wallet = new this.walletModel({
-      dto,
+      userId: dto.userId,
+      phone: dto.phone,
+      balance: dto.initialBalance,
     });
     return wallet.save();
   }
