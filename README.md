@@ -76,12 +76,8 @@ Create a `.env` file at the root of your project:
 
 env
 MONGO_URI=mongodb+srv://admin:admin_2025@mydb.qjllmxu.mongodb.net/avinash
-
-# Setup for JWT Secret
 JWT_SECRET=jwt_secret
 JWT_EXPIRES_IN=1h
-
-# admin creation secreat key
 ADMIN_SECRET_KEY=my-initial-admin-key
 
 
