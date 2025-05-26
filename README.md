@@ -92,18 +92,20 @@ MONGO_URI=mongodb+srv://admin:admin_2025@mydb.qjllmxu.mongodb.net/avinash
 
 ## API Endpoints
 **Method	Path	Description**
-1. POST	/users	Register user & auto-provision wallet
-2. GET	/users	List all users
-3. POST	/wallet	Manually create a wallet
-4. GET	/wallet/:phone	Get wallet by phone number.
-5. POST | /transfer | Transfer funds between wallets and store transaction history
-6. GET /transaction  Get transaction history
-7. GET/transactions/summary/{phone} Get total amount sent and received by a phone number
-8. GET/transactions/top-senders Get top 5 users who sent the most money
-9. GET/transactions/top-receivers Get top N receivers by amount received
-10. GET/transactions/daily-summary Get daily transaction summary (total & count)
-11. GET/transactions/by-date/{date} Get all transactions on a specific date
-12. GET/transactions/history/{phone} Get unified transaction history by phone number
+1.POST	/auth/register	Register a new user and auto-provision wallet
+2.POST	/auth/login	Login and receive a JWT access token
+3. POST	/users	Register user & auto-provision wallet
+4. GET	/users	List all users
+5. POST	/wallet	Manually create a wallet
+6. GET	/wallet/:phone	Get wallet by phone number.
+7. POST | /transfer | Transfer funds between wallets and store transaction history
+8. GET /transaction  Get transaction history
+9. GET/transactions/summary/{phone} Get total amount sent and received by a phone number
+10. GET/transactions/top-senders Get top 5 users who sent the most money
+11. GET/transactions/top-receivers Get top N receivers by amount received
+12. GET/transactions/daily-summary Get daily transaction summary (total & count)
+13. GET/transactions/by-date/{date} Get all transactions on a specific date
+14. GET/transactions/history/{phone} Get unified transaction history by phone number
 
 ## Usage Example
 1. Register Alice POST /users
