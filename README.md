@@ -92,8 +92,8 @@ MONGO_URI=mongodb+srv://admin:admin_2025@mydb.qjllmxu.mongodb.net/avinash
 
 ## API Endpoints
 **Method	Path	Description**
-1.POST	/auth/register	Register a new user and auto-provision wallet
-2.POST	/auth/login	Login and receive a JWT access token
+1. POST	/auth/register	Register a new user and auto-provision wallet
+2. POST	/auth/login	Login and receive a JWT access token
 3. POST	/users	Register user & auto-provision wallet
 4. GET	/users	List all users
 5. POST	/wallet	Manually create a wallet
