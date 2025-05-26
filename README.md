@@ -17,6 +17,7 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 - ✅ Transaction Aggregation Endpoints for summaries, history, and insights
 - ✅ Paginated Transaction History API
 - ✅ Date-formatted API responses for readability
+- ✅ **JWT Authentication & Role-Based Access Control** 
 
 ##  Modules
 
@@ -39,6 +40,25 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
  - Full transaction history with pagination
  - Enables reporting, auditing, and analytics features
 
+
+## 🔐 Authentication & Authorization
+
+### JWT Authentication
+- Secure login and registration using phone & password.
+- Upon successful login, users receive a **JWT access token**.
+- Authenticated endpoints are protected via `JwtAuthGuard`.
+
+### Role-Based Access Control (RBAC)
+- Roles: `admin`, `user`
+- `@Roles()` decorator + `RolesGuard` is used to restrict access to admin-only routes.
+- For example, only `admin` can create new users via `POST /users`.
+
+### Auth Flow
+1. User registers with role (`user` or `admin`)
+2. User logs in and receives JWT token
+3. Token includes embedded role in the payload
+4. Protected routes read the role from the decoded JWT for authorization
+
 ##  Technologies Used
 
 - **NestJS**
@@ -47,6 +67,8 @@ A full-featured NestJS API that simulates UPI-style money transfers between user
 - **Swagger (OpenAPI)**
 - **class-validator / class-transformer**
 - **Dotenv (.env) for config**
+- **JWT (for authentication)**
+- **bcrypt (for password hashing)**
 
 ## 🔐 Environment Configuration
 
