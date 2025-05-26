@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './user.schema';
 import { WalletService } from '../wallet/wallet.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -12,17 +13,25 @@ export class UserService {
     private readonly walletService: WalletService, // inject the service
   ) {}
   async createUser(dto: CreateUserDto): Promise<User> {
-    // Step 1: Create user
+    const existingUser = await this.userModel.findOne({ phone: dto.phone });
+    if (existingUser) {
+      throw new BadRequestException('User already exists');
+    }
+
+    const hashedPassword = await bcrypt.hash(dto.password, 10);
+
     const user = await this.userModel.create({
       name: dto.name,
       phone: dto.phone,
+      password: hashedPassword,
+      role: dto.role || 'user', // use role from dto
     });
 
-    // Step 2: Automatically create wallet with initial balance
+    // Automatically create wallet
     await this.walletService.createWallet({
       userId: user._id,
       phone: dto.phone,
-      initialBalance: dto.initialBalance,
+      initialBalance: dto.initialBalance ?? 1000, // fallback default
     });
 
     return user;

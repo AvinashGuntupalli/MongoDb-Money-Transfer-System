@@ -204,4 +204,12 @@ export class TransactionService {
       data: results,
     };
   }
+
+  async findUserTransactions(userId: string) {
+    return this.transactionModel
+      .find({
+        $or: [{ sender: userId }, { receiver: userId }],
+      })
+      .sort({ createdAt: -1 });
+  }
 }

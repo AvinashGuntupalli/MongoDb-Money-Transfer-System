@@ -1,9 +1,20 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiQuery, ApiParam } from '@nestjs/swagger';
 import { TransactionService } from './transaction.service';
+import { AuthGuard } from '@nestjs/passport';
+import { User as GetUser } from '../common/decorators/user.decorator';
 
 @ApiTags('transactions')
 @Controller('transactions')
+@UseGuards(AuthGuard('jwt')) // Protect all routes in this controller
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
 
@@ -78,5 +89,14 @@ export class TransactionController {
       Number(page),
       Number(limit),
     );
+  }
+
+  @Get('me')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Get your own transaction history (as sender or receiver)',
+  })
+  async getMyTransactions(@GetUser() user: any) {
+    return this.transactionService.findUserTransactions(user.userId);
   }
 }
